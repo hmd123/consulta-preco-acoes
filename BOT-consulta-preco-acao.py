@@ -4,8 +4,8 @@ import os
 import telebot
 import yfinance as yf
 
-#bot = telebot.TeleBot(BOT_API_TOKEN)
 BOT_API_TOKEN = os.getenv('BOT_API_TOKEN')
+bot = telebot.TeleBot(BOT_API_TOKEN)
 print(f"Token: '{BOT_API_TOKEN}'")  # Apenas para depuração
 
 if BOT_API_TOKEN is None:
