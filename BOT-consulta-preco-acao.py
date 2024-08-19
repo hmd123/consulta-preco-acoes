@@ -1,5 +1,5 @@
 #exporta cÓdigo do botfather
-BOT_API_TOKEN="INSERIR O TOKEN"
+#BOT_API_TOKEN="INSERIR O TOKEN"
 
 import telebot
 import yfinance as yf
