@@ -32,7 +32,7 @@ def obter_preco(ticker):
 # Configura o webhook
 @app.route('/set_webhook', methods=['GET'])
 def set_webhook():
-    webhook_url = f'https://api.telegram.org/bot{BOT_API_TOKEN}/setWebhook?url={WEBHOOK_URL_TOKEN}'
+    webhook_url = f'https://api.telegram.org/bot{BOT_API_TOKEN}/setWebhook?url={WEBHOOK_URL}'
     response = requests.get(webhook_url)
     if response.status_code == 200:
         return 'Webhook configurado com sucesso!', 200
