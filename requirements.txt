@@ -2,4 +2,3 @@ yfinance
 pyTelegramBotAPI
 requests
 flask
-dotenv
