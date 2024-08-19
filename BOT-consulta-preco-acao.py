@@ -27,8 +27,7 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
-    acao = message.text.upper()
-    acao = symbol+".SA"
+    acao = message.text.upper()+".SA"
     preco_info = obter_preco(acao)
     bot.reply_to(message, preco_info)
 
