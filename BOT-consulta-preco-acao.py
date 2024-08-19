@@ -5,6 +5,7 @@ import telebot
 import yfinance as yf
 
 bot = telebot.TeleBot(BOT_API_TOKEN)
+print(f"Token: '{BOT_API_TOKEN}'")  # Apenas para depuração
 
 def obter_preco(ticker):
     try:
