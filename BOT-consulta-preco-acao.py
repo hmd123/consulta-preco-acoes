@@ -1,12 +1,15 @@
 #exporta cÓdigo do botfather
 #BOT_API_TOKEN="INSERIR O TOKEN"
-
+import os
 import telebot
 import yfinance as yf
 
 #bot = telebot.TeleBot(BOT_API_TOKEN)
 BOT_API_TOKEN = os.getenv('BOT_API_TOKEN')
 print(f"Token: '{BOT_API_TOKEN}'")  # Apenas para depuração
+
+if BOT_API_TOKEN is None:
+    raise ValueError('BOT_API_TOKEN não está definido')
 
 def obter_preco(ticker):
     try:
