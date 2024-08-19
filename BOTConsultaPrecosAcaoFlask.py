@@ -3,10 +3,6 @@ import telebot
 import yfinance as yf
 import os
 import requests
-from dotenv import load_dotenv
-
-# Carrega variáveis de ambiente do arquivo .env, se disponível
-load_dotenv()
 
 app = Flask(__name__)
 
