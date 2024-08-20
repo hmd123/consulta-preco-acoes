@@ -25,8 +25,8 @@ def obter_preco(ticker):
         preco_atual = acao.history(period='1d')['Close'].iloc[-1]
         preco_atual = f"{preco_atual:.2f}"
         return preco_atual
-    except:
-        log_erro = "Não foi possível buscar a ação. Pode ter acontecido um erro ou a ação foi digitada incorretamente."
+    except Exception as e:
+        log_erro = f"Não foi possível buscar a ação. Erro: {str(e)}"
         return log_erro
 
 # Configura o webhook
