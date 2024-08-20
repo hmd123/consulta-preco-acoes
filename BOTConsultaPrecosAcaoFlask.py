@@ -15,9 +15,6 @@ if not BOT_API_TOKEN or not WEBHOOK_URL:
 
 bot = telebot.TeleBot(BOT_API_TOKEN)
 
-# URL do Webhook (substitua pelo seu domínio real)
-WEBHOOK_URL = f'https://your-domain.com/{BOT_API_TOKEN}'
-
 # Função para obter o preço da ação
 def obter_preco(ticker):
     try:
