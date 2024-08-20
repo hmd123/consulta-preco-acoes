@@ -29,22 +29,30 @@ def obter_preco(ticker):
         log_erro = f"Não foi possível buscar a ação. Erro: {str(e)}"
         return log_erro
 
-# Configura o webhook
-@app.route('/set_webhook', methods=['GET'])
-def set_webhook():
-    webhook_url = f'https://api.telegram.org/bot{BOT_API_TOKEN}/setWebhook?url={WEBHOOK_URL}'
-    response = requests.get(webhook_url)
-    if response.status_code == 200:
-        return 'Webhook configurado com sucesso!', 200
-    else:
-        return 'Falha ao configurar webhook.', 500
-
 # Endpoint que o Telegram chamará
 @app.route(f'/{BOT_API_TOKEN}', methods=['POST'])
 def webhook():
     update = request.get_json()
-    bot.process_new_updates([telebot.types.Update.de_json(update)])
+    try:
+        bot.process_new_updates([telebot.types.Update.de_json(update)])
+    except Exception as e:
+        print(f"Erro ao processar o update: {e}")
     return '', 200
+
+# Configura o webhook do bot
+def set_webhook():
+    webhook_url = f'https://api.telegram.org/bot{BOT_API_TOKEN}/setWebhook?url={WEBHOOK_URL}'
+    response = requests.get(webhook_url)
+    if response.status_code == 200:
+        print('Webhook configurado com sucesso!')
+    else:
+        print('Falha ao configurar webhook.')
+
+# Endpoint para configuração do webhook
+@app.route('/set_webhook', methods=['GET'])
+def configure_webhook():
+    set_webhook()
+    return 'Webhook configurado', 200
 
 # Configura os handlers de mensagens
 @bot.message_handler(commands=['start', 'help'])
@@ -57,6 +65,7 @@ def handle_message(message):
     preco_info = obter_preco(acao)
     bot.reply_to(message, preco_info)
 
-# Inicia o servidor Flask
+# Inicia o servidor Flask e configura o webhook
 if __name__ == '__main__':
+    set_webhook()  # Configure o webhook ao iniciar
     app.run(host='0.0.0.0', port=8080)
